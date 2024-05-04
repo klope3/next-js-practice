@@ -10,6 +10,9 @@ export default function Navbar() {
         <li>
           <Link href="/new">New</Link>
         </li>
+        <li>
+          <Link href="/categories">Categories</Link>
+        </li>
       </ul>
     </nav>
   );
