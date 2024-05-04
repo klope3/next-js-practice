@@ -18,6 +18,18 @@ async function createCategory(formData: FormData) {
   redirect("/categories");
 }
 
+export async function deleteCategory(id: number) {
+  "use server";
+
+  await prisma.category.delete({
+    where: {
+      id,
+    },
+  });
+
+  revalidatePath("/categories");
+}
+
 export default async function Categories() {
   const categories = await prisma.category.findMany();
 
@@ -26,7 +38,10 @@ export default async function Categories() {
       <h1>Categories</h1>
       <ul>
         {categories.map((category) => (
-          <li key={category.id}>{category.name}</li>
+          <div key={category.id}>
+            <li>{category.name}</li>
+            <DeleteCategoryButton id={category.id} />
+          </div>
         ))}
       </ul>
       <form action={createCategory}>
@@ -35,5 +50,15 @@ export default async function Categories() {
         <button type="submit">Submit</button>
       </form>
     </>
+  );
+}
+
+function DeleteCategoryButton({ id }: { id: number }) {
+  const deleteCategoryWithId = deleteCategory.bind(null, id);
+
+  return (
+    <form action={deleteCategoryWithId}>
+      <button>X</button>
+    </form>
   );
 }
