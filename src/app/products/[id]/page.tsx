@@ -1,6 +1,11 @@
 import { prisma } from "../../../../prisma/client";
+import { ProductForm } from "./ProductForm";
 
-export default async function Product({ params }: { params: { id: number } }) {
+export default async function ProductPage({
+  params,
+}: {
+  params: { id: number };
+}) {
   const id = +params.id;
 
   const existingProduct = await prisma.product.findUnique({
@@ -11,7 +16,7 @@ export default async function Product({ params }: { params: { id: number } }) {
 
   return (
     <>
-      <h1>{existingProduct ? existingProduct.name : "Create Product"}</h1>
+      <ProductForm existingProduct={existingProduct} />
     </>
   );
 }

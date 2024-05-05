@@ -11,7 +11,9 @@ export default async function Products() {
         {products.map((product) => (
           <div key={product.id}>
             <Link href={`/products/${product.id}`}>
-              <li>{product.name}</li>
+              <li>
+                {product.name} ${(product.priceCents / 100).toFixed(2)}
+              </li>
             </Link>
           </div>
         ))}
