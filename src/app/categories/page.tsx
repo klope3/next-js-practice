@@ -1,5 +1,5 @@
 import { prisma } from "../../../prisma/client";
-import { createCategory, deleteCategory } from "../actions/categories";
+import { createCategory, deleteCategory } from "../../actions/categories";
 
 export default async function Categories() {
   const categories = await prisma.category.findMany();
