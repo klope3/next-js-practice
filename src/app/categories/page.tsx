@@ -2,6 +2,8 @@ import { Category } from "@prisma/client";
 import { prisma } from "../../../prisma/client";
 import { createCategory, deleteCategory } from "../../actions/categories";
 import { relationalObjectsToHierarchy } from "@/utility";
+import { HierarchyView } from "@/components/HierarchyView";
+import Link from "next/link";
 
 export default async function Categories() {
   const categories = await prisma.category.findMany();
@@ -13,12 +15,33 @@ export default async function Categories() {
   return (
     <>
       <h1>Categories</h1>
-      <CategoryHierarchy children={hierarchy} />
+      {/* <CategoryHierarchy children={hierarchy} /> */}
+      <HierarchyView
+        children={hierarchy}
+        renderItem={(child) => <CategoryItem category={child} link={true} />}
+      />
       <form action={createCategory}>
         <label htmlFor="name">Name</label>
         <input type="text" name="name" id="name" />
         <button type="submit">Submit</button>
       </form>
+    </>
+  );
+}
+
+type CategoryItemProps = {
+  category: Category;
+  link?: boolean;
+};
+function CategoryItem({ category, link }: CategoryItemProps) {
+  return (
+    <>
+      {link ? (
+        <Link href={`/categories/${category.id}`}>{category.name}</Link>
+      ) : (
+        category.name
+      )}{" "}
+      <DeleteCategoryButton id={category.id} />
     </>
   );
 }
