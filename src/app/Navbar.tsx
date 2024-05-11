@@ -1,4 +1,5 @@
 import Link from "next/link";
+import AuthButton from "./AuthButton.server";
 
 export default function Navbar() {
   return (
@@ -17,6 +18,7 @@ export default function Navbar() {
           <Link href="/products">Products</Link>
         </li>
       </ul>
+      <AuthButton />
     </nav>
   );
 }
