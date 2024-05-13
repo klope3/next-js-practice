@@ -23,9 +23,10 @@ export const productFormDataSchema = z.object({
   price: z.string().transform((val) => (isNaN(+val) ? 0 : +val)),
 });
 
-export const createUserFormDataSchema = z.object({
+export const userFormDataSchema = z.object({
   name: z.string(),
   email: z.string().email(),
   password: z.string(),
   roleId: numberInString,
+  existingUserId: z.string().optional(),
 });

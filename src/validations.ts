@@ -1,4 +1,4 @@
-import { createUserFormDataSchema, productFormDataSchema } from "./schema";
+import { userFormDataSchema, productFormDataSchema } from "./schema";
 
 export function validateProductForm(formData: FormData) {
   return productFormDataSchema.parse({
@@ -7,11 +7,12 @@ export function validateProductForm(formData: FormData) {
   });
 }
 
-export function validateCreateUserForm(formData: FormData) {
-  return createUserFormDataSchema.parse({
+export function validateUserForm(formData: FormData) {
+  return userFormDataSchema.parse({
     name: formData.get("name"),
     email: formData.get("email"),
     password: formData.get("password"),
     roleId: formData.get("roleId"),
+    existingUserId: formData.get("existingUserId"),
   });
 }

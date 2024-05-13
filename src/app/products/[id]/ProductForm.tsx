@@ -11,6 +11,11 @@ type ProductFormProps = {
 
 export function ProductForm({ existingProduct }: ProductFormProps) {
   const [editingMode, setEditingMode] = useState(existingProduct === null);
+  //The editing mode is probably unnecessary complexity.
+  //If the goal is to prevent accidental editing by the user,
+  //that should not be a concern, because anyone granted access
+  //to the data should be trusted to use the "save changes"
+  //button responsibly.
 
   function submitAction(e: FormData) {
     if (!existingProduct) createProduct(e);

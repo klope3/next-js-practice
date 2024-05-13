@@ -18,7 +18,7 @@ export default async function Users() {
           </li>
         ))}
       </ul>
-      <a href="/users/create">Create User</a>
+      <a href="/users/0">Create User</a>
     </div>
   );
 }
