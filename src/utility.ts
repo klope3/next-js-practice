@@ -1,3 +1,5 @@
+import bcrypt from "bcryptjs";
+
 type RelationalObject = { id: number; parentId: number | null };
 export function relationalObjectsToHierarchy<T>(
   objects: T[],
@@ -26,4 +28,8 @@ export function relationalObjectsToHierarchy<T>(
   }
 
   return hierarchy;
+}
+
+export function hashPassword(password: string) {
+  return bcrypt.hashSync(password, 11);
 }

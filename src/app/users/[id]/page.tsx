@@ -1,4 +1,5 @@
 import { prisma } from "../../../../prisma/client";
+import CreateUserForm from "../create/page";
 
 export default async function User({ params }: { params: { id: number } }) {
   const user = await prisma.user.findUnique({
