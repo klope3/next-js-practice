@@ -1,0 +1,11 @@
+.my-table,
+th,
+td {
+  text-align: left;
+  border: 1px solid lightgray;
+}
+
+.my-table th,
+.my-table td {
+  padding: 10px;
+}
